@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Helina's Dry Fish Market</title>
+
+<style>
+body{
+  margin:0;
+  font-family:Arial, sans-serif;
+  background:#f7f9fb;
+  color:#222;
+}
+
+/* HERO */
+.hero{
+  background:url('https://images.unsplash.com/photo-1544943910-4c1dc44aab44') center/cover;
+  height:90vh;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  color:white;
+  text-align:center;
+  padding:20px;
+}
+
+.hero h1{
+  font-size:42px;
+}
+
+.btn{
+  background:#00a8cc;
+  color:white;
+  padding:12px 18px;
+  border:none;
+  border-radius:5px;
+  cursor:pointer;
+  margin-top:10px;
+}
+
+/* SECTIONS */
+section{
+  padding:50px 20px;
+  text-align:center;
+}
+
+h2{
+  margin-bottom:20px;
+}
+
+/* PRODUCTS */
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+  gap:15px;
+}
+
+.card{
+  background:white;
+  padding:15px;
+  border-radius:10px;
+  box-shadow:0 2px 8px rgba(0,0,0,0.1);
+  transition:0.3s;
+}
+
+.card:hover{
+  transform:translateY(-5px);
+}
+
+.card img{
+  width:100%;
+  border-radius:10px;
+}
+
+/* PRICING */
+.price{
+  background:white;
+  max-width:400px;
+  margin:10px auto;
+  padding:15px;
+  border-radius:10px;
+  box-shadow:0 2px 8px rgba(0,0,0,0.1);
+  text-align:left;
+}
+
+/* FORM */
+form{
+  max-width:400px;
+  margin:auto;
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+
+input, select{
+  padding:10px;
+  border-radius:5px;
+  border:1px solid #ccc;
+}
+
+.success{
+  color:green;
+  font-weight:bold;
+}
+
+/* CONTACT */
+.contact{
+  background:#0b2d39;
+  color:white;
+}
+
+.whatsapp{
+  display:inline-block;
+  margin-top:10px;
+  padding:10px;
+  background:#25D366;
+  color:white;
+  text-decoration:none;
+  border-radius:5px;
+}
+</style>
+</head>
+
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <h1>Helina's Dry Fish Market</h1>
+  <p>Fresh, clean and high-quality dried fish for retail & wholesale</p>
+  <button class="btn" onclick="document.getElementById('order').scrollIntoView({behavior:'smooth'})">
+    Order Now
+  </button>
+</div>
+
+<!-- PRODUCTS -->
+<section>
+<h2>Our Products</h2>
+
+<div class="grid">
+  <div class="card">
+    <img src="https://picsum.photos/200?1">
+    <h3>Dry Tilapia</h3>
+    <p>$10 per kg</p>
+  </div>
+
+  <div class="card">
+    <img src="https://picsum.photos/200?2">
+    <h3>Smoked Sardines</h3>
+    <p>$8 per pack</p>
+  </div>
+
+  <div class="card">
+    <img src="https://picsum.photos/200?3">
+    <h3>Dry Anchovies</h3>
+    <p>$12 per kg</p>
+  </div>
+
+  <div class="card">
+    <img src="https://picsum.photos/200?4">
+    <h3>Smoked Salmon</h3>
+    <p>$20 per kg</p>
+  </div>
+
+  <div class="card">
+    <img src="https://picsum.photos/200?5">
+    <h3>Mixed Fish Pack</h3>
+    <p>$25 bundle</p>
+  </div>
+</div>
+</section>
+
+<!-- PRICING -->
+<section>
+<h2>Pricing List</h2>
+
+<div class="price">Dry Tilapia — $10/kg</div>
+<div class="price">Smoked Sardines — $8/pack</div>
+<div class="price">Dry Anchovies — $12/kg</div>
+<div class="price">Mixed Pack — $25</div>
+</section>
+
+<!-- ABOUT -->
+<section>
+<h2>About Us</h2>
+<p>
+We are a trusted dry fish supplier offering fresh, hygienic and affordable seafood.
+We supply both wholesale and retail customers across the region.
+</p>
+</section>
+
+<!-- ORDER FORM -->
+<section id="order">
+<h2>Place Your Order</h2>
+
+<form id="orderForm">
+  <input type="text" id="name" placeholder="Your Name" required>
+  <input type="tel" id="phone" placeholder="Phone Number" required>
+
+  <select id="product" required>
+    <option value="">Select Product</option>
+    <option>Dry Tilapia</option>
+    <option>Smoked Sardines</option>
+    <option>Dry Anchovies</option>
+    <option>Smoked Salmon</option>
+    <option>Mixed Fish Pack</option>
+  </select>
+
+  <input type="number" id="qty" placeholder="Quantity (kg/pack)" required>
+  <input type="text" id="location" placeholder="Delivery Location" required>
+
+  <button class="btn" type="submit">Submit Order</button>
+  <div class="success" id="msg"></div>
+</form>
+</section>
+
+<!-- CONTACT -->
+<section class="contact">
+<h2>Contact Us</h2>
+<p>📞 +233 542946812</p>
+<p>📍 Accra Market, Ghana</p>
+
+<a class="whatsapp" href="https://wa.me/233559876543" target="_blank">
+  Order on WhatsApp
+</a>
+</section>
+
+<script>
+// FORM LOGIC
+document.getElementById("orderForm").addEventListener("submit", function(e){
+  e.preventDefault();
+
+  let name = document.getElementById("name").value;
+  let phone = document.getElementById("phone").value;
+
+  if(name === "" || phone === ""){
+    alert("Please fill all fields");
+    return;
+  }
+
+  document.getElementById("msg").innerText =
+    "Order placed successfully! We will contact you soon.";
+
+  this.reset();
+});
+</script>
+
+</body>
+</html>
